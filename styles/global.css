@@ -49,9 +49,12 @@ img {
   margin-inline: auto;
 }
 
-  main {
-    margin-top: 40px;
-  }
+main {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  gap: 80px;
+}
 
 .content-tag {
   display: inline-block;
