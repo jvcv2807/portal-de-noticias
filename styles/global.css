@@ -11,8 +11,9 @@
   --stroke-color: #1E293B;
   --text-color-primary: #F1F5F9;
   --text-color-secondary: #CBD5E1;
+  --px-page: 1rem;
   --font-family: 'Archivo', sans-serif;
-  --h1: 800 24px/135% var(--font-family);
+  --h1: 800 20px/135% var(--font-family);
   --h2: 800 16px/140% var(--font-family);
   --h3: 800 14px/140% var(--font-family);
   --text-span: 600 14px/145% var(--font-family);
@@ -40,28 +41,37 @@ h1, h2, h3 {
 }
 
 img {
+  display: block;
   max-width: 100%;
+  height: auto;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--brand-color-light);
+  outline-offset: 4px;
 }
 
 .container {
-  max-width: 1280px;
-  padding-inline: 32px;
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: var(--px-page);
   margin-inline: auto;
 }
 
 main {
   display: grid;
-  flex-direction: column;
-  margin-block: 40px;
-  row-gap: 80px; 
-  column-gap: 32px;
+  margin-block: 1.5rem;
+  gap: 2.5rem;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "featured"
+    "weekly"
+    "ai"
+    "aside";
+}
 
-  grid-template-columns: 2fr 1fr;
-
-  grid-template-areas: 
-  "featured featured"
-  "weekly weekly"
-  "ai aside";
+.grid > *, main > * {
+  min-width: 0;
 }
 
 .content-tag {
@@ -74,4 +84,20 @@ main {
   letter-spacing: 0.04em;
   color: var(--text-color-primary);
   box-shadow: 0px 4px 16px rgba(2, 6, 23, 0.251);
+}
+@media (width >= 40rem) {
+  :root { --px-page: 2rem; }
+  main { margin-block: 2.5rem; gap: 3rem 2rem; }
+}
+
+@media (width >= 80rem) {
+  :root { --h1: 800 24px/135% var(--font-family); }
+  main {
+    row-gap: 5rem;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    grid-template-areas:
+      "featured featured"
+      "weekly weekly"
+      "ai aside";
+  }
 }
